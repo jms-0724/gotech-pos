@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+.border-blacked {
+    border: 1px solid black;
+}
+.img-gotech{
+    background-color: #3c1d08;
+    background-image: url("images/gotech.jpg"); 
+    background-size: 1366px 768px;
+}
+.logo{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+/* #grad1 { 
+    background-image: linear-gradient(green, purple);
+}*/
+.divfill{
+    background-image: url('images/gotech.jpg');
+    background-size: 683px 768px;
+    background-repeat: no-repeat;
+}
+#section2Div{
+    background-color: #F0EAD6;
+}
