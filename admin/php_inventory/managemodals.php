@@ -119,3 +119,35 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Add Items -->
+<div class="modal fade" id="addItems" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Update Product# <i id="pID"></i></h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form method="post" id="upd_inv">
+          <label for="">Items</label>
+          <select name="items" id="items">
+            
+          </select>
+            <label for="updprod_quantity" class="form-label">Product Quantity</label>
+            <input type="number" name="updprod_quantity" id="updprod_quantity" class="form-control" required>
+            <label for="updprod_price" class="form-label">Product Price</label>
+            <input type="text" name="updprod_price" id="updprod_price" class="form-control" required>
+            <!-- <label for="updprod_photo" class="form-label" >Product Photo</label>
+            <input type="file" name="updprod_photo" id="updprod_photo" class="form-control" placeholder=".jpg, .gif and .png files only" required> -->
+            <div class="mt-3">
+              <button type="reset" class="btn btn-danger">Clear</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+      </div>
+    </div>
+  </div>
+</div>

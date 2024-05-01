@@ -10,7 +10,6 @@ session_start();
     <link rel="stylesheet" href="../bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     
-    
 </head>
 <body>
 <div class="wrapper">
@@ -124,14 +123,12 @@ session_start();
         </div>
     </div>
     <!-- Javascript Sources -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./../node_modules/chart.js/dist/chart.umd.js"></script>
     <script src="scripts/dashboardcharts.js"></script>
     <script src="scripts/toggler.js"></script>
     <script src="system/confirmlogout.js"></script>
     <script src="scripts/dashboardscript.js"></script>
     
-   
-
 </body>
 <?php
     include('system/logoutmodal.php');

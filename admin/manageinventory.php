@@ -78,6 +78,9 @@ session_start();
                                 <button type="button" id="addP" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addProducts"> Add Products</button> 
                             </div>
                             <div class="d-flex">
+                            <button type="button" id="addItem" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addItems"> Add Items</button> 
+                            </div>
+                            <div class="d-flex">
                             <input type="text" name="search" id="searchProds" class="rounded" placeholder="Search Products...">
                             </div>
                         </section>

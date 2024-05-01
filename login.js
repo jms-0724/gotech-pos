@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-
     //Variable for Form
     const form = document.getElementById('login');
 
