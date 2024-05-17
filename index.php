@@ -6,25 +6,30 @@
 <title>Login Page</title>
 <link rel="stylesheet" href="bootstrap-5.3.3-dist/css/bootstrap.min.css"> 
 <link rel="stylesheet" href="login.css">
+<style>
 
+</style>
 </head>
 <body>
-    <main class="login-container" id="poppins">
-        <h2>LOGIN</h2>
+<main class="login-container">
+        <header class="login-header">
+            <img src="./images/gotech_original.png" alt="Logo" class="logo">
+            
+        </header>
         <form method="POST" id="login">
             <div class="form-group">
-                <label for="username">Username:</label>
-                <input type="text" id="uname" name="uname" placeholder="Enter your username" required>
+                <label for="username"></label>
+                <input type="text" id="uname" name="uname" placeholder="Username" required>
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" id="pword" name="pword" placeholder="Enter your password"required>
+                <label for="password"></label>
+                <input type="password" id="pword" name="pword" placeholder="Password" required>
             </div>
-            <div class="form-group">
-                <button type="submit">Login</button>
+            <div class="button">
+                <button type="submit">Log in</button>
             </div>
             <div class="forgot-password">
-                <a href="forgot.php">Forgot password?</a>
+               <a href="forgot.php">Forgot password?</a>
             </div>
         </form>
     </main>

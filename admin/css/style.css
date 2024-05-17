@@ -9,7 +9,8 @@
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;  
-    background-image: url("bg_honeycomb.jpg");
+    /* background-image: url("bg_honeycomb.jpg"); */
+    background: #3e4141 85%;
     background-repeat: no-repeat;
     background-position: center bottom;
     background-size: cover;
@@ -44,6 +45,7 @@ li {
     transition: all 0.35s ease-in-out;
     box-shadow: 0 0 35px 0 rgba(49, 57, 66, 0.5);
     z-index: 900;
+    background: #262626 15%;
 }
 
 /* Sidebar collapse */
@@ -129,4 +131,7 @@ a.sidebar-link {
     width: 400; 
     height: 100;
     background-color: lightgray;
+}
+.dashboard-card {
+    background: #ccff99 80%;
 }

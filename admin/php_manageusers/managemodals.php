@@ -12,9 +12,10 @@
                         <label for="adduname" class="form-label">Username</label>
                         <input type="text" name="adduname" id="adduname" class="form-control" placeholder="Username">
                         <label for="addpword" class="form-label">Password</label>
-                        <input type="password" name="addpword" id="addpword" class="form-control" placeholder="Password">
+                        <input type="password" name="addpword" id="addpword" class="form-control" placeholder="Password" minlength="8">
                         <label for="add_level" class="form-label">Userlevel</label>
                         <select name="add_level" id="add_level" class="form-select">
+                            <option value="Administrator">Administrator</option>
                             <option value="Cashier">Cashier</option>
                         </select>
                         <label for="fname" class="form-label">Firstname</label>
@@ -58,6 +59,7 @@
           <div>
             <label for="up_level">Userlevel</label>
             <select name="up_level" id="up_level" class="form-select">
+              <option value="Administrator">Administrator</option>
               <option value="Cashier">Cashier</option>
             </select>
           </div>

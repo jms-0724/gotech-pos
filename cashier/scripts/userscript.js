@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     //Confirm Update
     document.getElementById("up_form").addEventListener("submit",(e)=>{
     e.preventDefault()
-    $("#confirm_upd").modal("show")
+    $("#confirm_upd").modal("show");
     $("#upd_Users").modal("hide"); 
     /* const confirmUpModal  = new bootstrap.Modal(document.getElementById("confirm_upd"));
     confirmUpModal.show();
@@ -183,7 +183,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         let tbl_user = JSON.parse(data);
         document.getElementById("uID").textContent = tbl_user.uid;
         document.getElementById("up_uname").value = tbl_user.username;
-        document.getElementById("up_pword").value = tbl_user.password;
+        // document.getElementById("up_pword").value = tbl_user.password;
         document.getElementById("up_level").value = tbl_user.ulevel;
         document.getElementById("up_fname").value = tbl_user.fname;
         document.getElementById("up_lname").value = tbl_user.lname;

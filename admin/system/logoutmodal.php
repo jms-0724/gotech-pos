@@ -1,4 +1,4 @@
-<!-- confirm Logout -->
+<!-- Confirm Logout -->
 <div class="modal fade" tabindex="-1" role="dialog" id="log_out" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
   <div class="modal-dialog">
     <div class="modal-content rounded-4 shadow bg-dark text-light">

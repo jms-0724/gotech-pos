@@ -6,7 +6,7 @@ if (isset($_POST['useName'])) {
 
     // Prepare the SQL statement
     $statement = $conn->prepare("UPDATE tbl_user SET password = ?, WHERE username = ?");
-    
+    $hashedpass = password_hash($pass2, PASSWORD_BCRYPT);
     // Bind parameters
     $statement->bind_param("ss",$pass2,$useName);
 

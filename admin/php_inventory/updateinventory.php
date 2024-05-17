@@ -14,15 +14,15 @@ if (isset($_POST['up_uname'])) {
                     $pid = $_POST['pid'];
                     $updprod_name = $_POST['updprod_name'];
                     $updprod_type = $_POST['updprod_type'];
-                    $updprod_quantity = $_POST['updprod_quantity'];
-                    $updprod_price = $_POST['updprod_price'];
-                    $updprod_photo = $uploadDir . $filename;
+                    // $updprod_quantity = $_POST['updprod_quantity'];
+                    // $updprod_price = $_POST['updprod_price'];
+                    // $updprod_photo = $uploadDir . $filename;
                 
                     // Prepare the SQL statement
-                    $statement = $conn->prepare("UPDATE tbl_inventory SET prod_name = ?, prod_type = ?, prod_quantity = ?, prod_price = ?, prod_photo = ? WHERE prod_id = ?");
+                    $statement = $conn->prepare("UPDATE tbl_inventory SET prod_name = ?, prod_type = ? WHERE prod_id = ?");
                     
                     // Bind parameters
-                    $statement->bind_param("sssssi", $updprod_name, $updprod_type, $updprod_quantity, $updprod_price, $updprod_photo, $pid);
+                    $statement->bind_param("ss", $updprod_name, $updprod_type, $pid);
                 
                     // Execute the statement
                     if ($statement->execute()) {

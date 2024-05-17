@@ -4,7 +4,7 @@
         <div class="modal-content">
             <div class="modal-header bg-gotech text-white d-flex">
                 <center><h1 class="modal-title fs-5 d-flex justify-content-center">Add Products</h1></center>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <input type="text" name="search" id="searchProduct">
@@ -37,7 +37,7 @@
             <div class="modal-content">
               <div class="modal-header bg-gotech text-white d-flex">
                 <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel" class="">List of Customers</h1>
-                <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white text-white" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <section class="mt-3">
@@ -163,19 +163,59 @@
                 <label for="paid">Money Tendered</label>
                 <input type="number" id="paid" class="form-control">
               </div>
-              <div class="mb-3">
+              <!-- <div class="mb-3">
                 <label for="paid">Change</label>
                 <p id="change"></p>
-              </div>
+              </div> -->
               <div class="mb-3 text-center">
-                <button type="submit" class="btn btn-primary">Insert Payment</button><br>
-
-                <div class="mt-3">
-                  <button type="button" class="btn btn-primary"><a href=""></a>Print Receipt</button>
-                </div>
+                <button type="submit" class="btn btn-primary"><a href="./../php_report/receipt.php" target="_blank"></a>Insert Payment</button><br>
               </div>
               
             </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Confirmation (Add_Payment) -->
+  <div class="modal fade" id="confirm_pay" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body bg-dark text-white">
+          <span class="d-flex justify-content-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" fill="orange" class="bi bi-exclamation-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0M7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0z"/>
+              </svg>
+          </span>
+          <p class="h3 text-center">Do you want to pay for this customer</p>
+          <p class="text-center">You wont be able to revert this</p>
+          <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-secondary mx-2 " data-bs-dismiss="modal" id="backtoPayment">No</button>
+            <button type="button" class="btn btn-primary" id="addpaymentDB">Yes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal for Showing Change -->
+     <!-- Payment Modal -->
+     <div class="modal fade" id="sukli" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header bg-gotech text-white d-flex">
+            <h1 class="modal-title fs-5 text-center" id="staticBackdropLabel" class="">Payment Modal</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="mb-3">
+                <h3 class="text-dark">Change</h3>
+                <p id="change"></p>
+              </div>
+            <div class="d-flex justify-content-center">
+            <button type="button" class="btn btn-primary" id="clearTable" data-bs-dismiss="modal">Ok</button>
+          </div>
           </div>
         </div>
       </div>

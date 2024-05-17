@@ -45,9 +45,18 @@ session_start();
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="reportgen.php" class="sidebar-link">
-                            Report Generation
+                        <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard"
+                            aria-expanded="false" aria-controls="dashboard">  
+                           Report Generation
                         </a>
+                        <ul id="dashboard" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                            <li class="sidebar-item">
+                                <a href="reportgen.php" class="sidebar-link">Sales Report</a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="transactgen.php" class="sidebar-link">Transactions Report</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div>
@@ -56,10 +65,10 @@ session_start();
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom sticky-top">
                 <!-- Button for sidebar toggle -->
-                <button class="btn" type="button" data-bs-theme="dark">
+                <button class="btn btn-dark" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="d-flex justify-content-end text-white w-100">
+                <div class="d-flex justify-content-end w-100 text-white">
                 <a data-bs-target="#log_out" data-bs-toggle="modal">
                     <span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
@@ -73,15 +82,15 @@ session_start();
                     <div class="mb-3">
                         <div class="row mb-3">
                             <div class="col">
-                                <div class="card">
+                                <div class="card dashboard-card">
                                     <div class="card-body">
-                                      <h5 class="card-title text-center">Total Products Sold Today</h4>
+                                      <h5 class="card-title text-center">Total Products Sold</h4>
                                       <p class="card-text text-center h6" id="totalSold"></p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card">
+                                <div class="card dashboard-card">
                                     <div class="card-body">
                                       <h5 class="card-title text-center">Total Sales</h4>
                                       <p class="card-text text-center h6">PHP <span id="salesTotal"></span></p>
@@ -89,7 +98,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card">
+                                <div class="card dashboard-card">
                                     <div class="card-body">
                                       <h5 class="card-title text-center">Average Price of Transactions</h4>
                                       <p class="card-text text-center h6" id="productAve"></p>
@@ -97,7 +106,7 @@ session_start();
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="card">
+                                <div class="card dashboard-card">
                                     <div class="card-body">
                                       <h5 class="card-title text-center">Number of Transactions</h4>
                                       <p class="card-text text-center h6" id="transNum"></p>
@@ -108,13 +117,16 @@ session_start();
                         <div class="row mb-3">
                             <div class="col">
                                 <!-- Chart -->
-                                <center><h4 class="text-white">Product Category Distribution</h4></center>
+                                <center><h4 class="text-white">Prpducts Sold Per Category</h4></center>
                                 <canvas id="barChart" class="canvas">
 
                                 </canvas>
                             </div>
                             <div class="col">
-                                
+                            <center><h4 class="text-white">Monthly Sales</h4></center>
+                                <canvas id="lineChart" class="canvas">
+
+                                </canvas>
                             </div>
                         </div>
                     </div>
@@ -122,15 +134,17 @@ session_start();
             </main>
         </div>
     </div>
+
     <!-- Javascript Sources -->
     <script src="./../node_modules/chart.js/dist/chart.umd.js"></script>
     <script src="scripts/dashboardcharts.js"></script>
     <script src="scripts/toggler.js"></script>
     <script src="system/confirmlogout.js"></script>
     <script src="scripts/dashboardscript.js"></script>
+    <script src="./../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
     
 </body>
 <?php
-    include('system/logoutmodal.php');
+     include('system/logoutmodal.php');
 ?>
 </html>

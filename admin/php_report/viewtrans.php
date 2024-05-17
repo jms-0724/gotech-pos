@@ -22,6 +22,7 @@
                 <td><?=$row['total_quantity']?></td>
                 <td><?=$row['total_trans']?></td>
                 <td><?=$row['money_tendered']?></td>
+                
             </tr>
         <?php
     } 

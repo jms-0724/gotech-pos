@@ -22,12 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(response => response.text()) // assuming the response is plain text
         .then(result => {
             if (result === "admin") {
+                
                 window.location.href = "admin/admin.php";
             } else if (result === "cashier") {
                 window.location.href = "cashier/cashier.php";
             } else {
+                console.log(result);
                 const failedModal = new bootstrap.Modal(document.getElementById("incorrect"));
                 failedModal.show();
+                form.reset();
             }
         })
         .catch(error => {

@@ -8,11 +8,12 @@ if (isset($_POST['up_uname'])) {
     $u_fname = $_POST['up_fname'];
     $u_lname = $_POST['up_lname'];
 
+    $hashedPass = password_hash($u_pword, PASSWORD_BCRYPT); //encrypting the user
     // Prepare the SQL statement
     $statement = $conn->prepare("UPDATE tbl_user SET username = ?, password = ?, ulevel = ?, fname = ?, lname = ? WHERE uid = ?");
     
     // Bind parameters
-    $statement->bind_param("sssssi", $u_uname, $u_pword, $u_ulevel, $u_fname, $u_lname, $uid);
+    $statement->bind_param("sssssi", $u_uname, $hashedPass , $u_ulevel, $u_fname, $u_lname, $uid);
 
     // Execute the statement
     if ($statement->execute()) {

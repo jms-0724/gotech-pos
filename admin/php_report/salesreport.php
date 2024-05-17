@@ -70,7 +70,7 @@ foreach($data as $row){
 
 // Instanciation of inherited class
 $pdf = new PDF();
-$sql = "SELECT tbl_transaction.transact_date, SUM(tbl_transaction_details.total_price) AS 'Total Sales', SUM(tbl_transaction.total_quantity) AS 'Total Sold', AVG(tbl_transaction_details.total_price) AS 'Average Prices', AVG(tbl_transaction.total_quantity) AS 'Average Quantity' FROM tbl_transaction INNER JOIN tbl_transaction_details ON tbl_transaction.transact_id = tbl_transaction_details.transact_id GROUP BY tbl_transaction.transact_date";
+$sql = "SELECT tbl_transaction.transact_date, ROUND(SUM(tbl_transaction_details.total_price),2) AS 'Total Sales', SUM(tbl_transaction.total_quantity) AS 'Total Sold', ROUND(AVG(tbl_transaction_details.total_price),2) AS 'Average Prices', ROUND(AVG(tbl_transaction.total_quantity),2) AS 'Average Quantity' FROM tbl_transaction INNER JOIN tbl_transaction_details ON tbl_transaction.transact_id = tbl_transaction_details.transact_id GROUP BY tbl_transaction.transact_date";
 $header = array('Date','Total Revenue','Total Units Sold','Average Price','Average Purchased');
 // $result = $conn->query($sql);
 // $data = array();
@@ -82,7 +82,7 @@ $pdf->AliasNbPages();
 $pdf->AddPage();    
 $pdf->SetFont('Arial','',12);
 $pdf->Cell(80);
-$pdf->Cell(0, 10,'List of Sales', 0, 0, 'L',false,'');
+$pdf->Cell(0, 10,'List of Daily Sales', 0, 0, 'L',false,'');
 $pdf->Ln();
 
 $pdf->CreateTable($header,$data);

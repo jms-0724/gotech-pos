@@ -91,7 +91,7 @@ document.getElementById('validate').addEventListener("click", () => {
         cell6.appendChild(totalP);  
         let actions = document.createElement('button');
         actions.setAttribute('type','button');
-        actions.setAttribute('class','deleteRow','btn','btn-danger');
+        actions.setAttribute('class','deleteRow','btn btn-danger',);
         actions.textContent = 'Delete';
         cell7.appendChild(actions);
 
@@ -125,9 +125,13 @@ document.getElementById('validate').addEventListener("click", () => {
         });
     });
 
+    checkedBox.forEach(checkBox => {
+        checkBox.checked = false;
+    })
+
     $("#viewProds").modal('hide');
 });
-
+// Calculates total purchase
 function calculateTotalPurchase(table) {
     let total = 0;
     for (let row of table.rows) {
@@ -135,6 +139,7 @@ function calculateTotalPurchase(table) {
     }
     return total;
 }
+// Function to calculate toal items
 function calculateTotalItems(tabled){
     let totalItems = 0;
     for (let row of tabled.rows){
@@ -237,7 +242,7 @@ document.getElementById("addcustDB").addEventListener("click",()=>{
                 successModal.show();
                 document.getElementById("custInfo").reset();
                 $("#confirm_cust").modal('hide');
-                display();
+                displayCust();
             } else {
                 console.log(data);
                 const failedModal = new bootstrap.Modal(document.getElementById("failed"));
@@ -263,6 +268,7 @@ function fetchTransactTable(e){
 
     listPurchased.forEach(row => {
         let cell1 = row.getElementsByTagName("td")[0].textContent;
+        let cell2 = row.getElementsByTagName("td")[1].textContent;
         let num = row.querySelectorAll("input");
         let cell5 = row.getElementsByTagName("td")[4].textContent;
         let cell6 = row.getElementsByTagName("td")[5].textContent;
@@ -275,6 +281,7 @@ function fetchTransactTable(e){
         console.log(cell4value);
         let dataList = {
             prod_id : cell1,
+            prod_name:cell2,
             quantity:cell4value,
             total_cost:cell6,
             price_item:cell5
@@ -292,8 +299,8 @@ function fetchTransactTable(e){
         change:changeCompute,
         product_info:arrayData
     }
-    console.log(sendtoDB);
-    fetch('php_transaction/savetransact.php', {
+    
+    fetch('php_transaction/transactsave.php', {
         method:'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(sendtoDB)
@@ -306,15 +313,21 @@ function fetchTransactTable(e){
     })
     .then(data=> {
         if(data === "success"){
-            alert(data)
+            // alert(data);
+            $("#sukli").modal('show');
+            $("#confirm_pay").modal('hide');
+            window.open("php_report/receipt.php","_blank");
         } else {
-            alert(data)
+            // alert(data);
+            const failedModal = new bootstrap.Modal(document.getElementById("failed"));
+            failedModal.show();
         }
     })
     .catch(err=> {
         console.error(err);
     })
 }
+
 function validatePay() {
     let cust_id = document.getElementById('custnum').textContent;
     let total_purchase = document.getElementById('totalPurchase').textContent;
@@ -328,8 +341,41 @@ function validatePay() {
 }
 document.getElementById("payCust").addEventListener('click',validatePay);
 
-document.getElementById("payment").addEventListener("submit", fetchTransactTable);
+// document.getElementById("payment").addEventListener("submit", fetchTransactTable);
+document.getElementById("payment").addEventListener("submit", (e)=>{
+    e.preventDefault();
+    $("#payModal").modal('hide');
+    $("#confirm_pay").modal('show');
+    
+});
+document.getElementById("backtoPayment").addEventListener("click", ()=>{
+    $("#payModal").modal('show');
+    $("#confirm_pay").modal('hide');
+});
 
+document.getElementById("addpaymentDB").addEventListener("click", fetchTransactTable);
+
+
+document.getElementById("clearTable").addEventListener("click", ()=> {
+    let tbody = document.querySelector(".transBody");
+    while(tbody.firstChild){
+        tbody.removeChild(tbody.firstChild);
+    }
+    document.getElementById("quantity").textContent = "";
+    document.getElementById("totalPurchase  ").textContent = "";
+    document.getElementById("custnum").textContent = "";
+    document.getElementById("custfname").textContent = "";
+    document.getElementById("custlname").textContent = "";
+    document.getElementById("custbrgy").textContent = "";
+    document.getElementById("custmun").textContent = "";
+    document.getElementById("custprov").textContent = "";
+
+
+
+})
+// document.getElementById("clearTable").addEventListener("click", ()=> {
+//     document.getElementById("table-trans").innerHTML = "";
+// })
 });
 
 function placeCustomer(cid){

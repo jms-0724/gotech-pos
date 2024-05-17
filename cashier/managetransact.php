@@ -29,16 +29,18 @@ session_start();
                             Dashboard
                         </a>
                     </li>
+    
                     <li class="sidebar-item">
                         <a href="managetransact.php" class="sidebar-link">
                             Transaction Management
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="manageinventory.php" class="sidebar-link">
                             View Available Products
                         </a>
                     </li>
+                    
                 </ul>
             </div>
         </aside>
@@ -46,11 +48,11 @@ session_start();
         <div class="main">
             <nav class="navbar navbar-expand px-3 border-bottom" id="topsticky">
                 <!-- Button for sidebar toggle -->
-                <button class="btn" type="button" data-bs-theme="dark">
+                <button class="btn btn-dark" type="button" data-bs-theme="dark">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="d-flex justify-content-start text-white w-100"><h4 class="text-white">Transaction Management</h4></div>
-                <div class="d-flex justify-content-end text-white w-100">
+                <div class="d-flex justify-content-start w-100"><h4 class="text-white">Transaction Management</h4></div>
+                <div class="d-flex justify-content-end w-100 text-white">
                 <a data-bs-target="#log_out" data-bs-toggle="modal">
                     <span class="mx-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
@@ -77,10 +79,10 @@ session_start();
                                     <th>Total Price</th>
                                     <th>Action</th>
                                 </thead>
-                                <tbody>
+                                <tbody class="transBody">
         
                                 </tbody>
-                                </table>
+                            </table>
                             </div>
                         <div class="col-4">
                             <div class="card pos-right vh-100">
@@ -96,7 +98,7 @@ session_start();
                                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewCust">List of Customers</button>
                                     </div>
                                     <div>
-                                    <h4>Cost Information</h4>
+                                    <h4>Transaction Information</h4>
                                     <p>Total Items Purchased: <span id="quantity"></span></p>
                                     <p>Amount to Pay: ₱ <span id="totalPurchase"></span></p>
                                     </div>

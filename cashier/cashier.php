@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,7 +34,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item">
-                        <a href="#" class="sidebar-link">
+                        <a href="managetransact.php" class="sidebar-link">
                             View Available Products
                         </a>
                     </li>
@@ -56,18 +59,71 @@
             </nav>
             <main class="content px-3 py-2">
                 <div class="container-fluid">
-                    <div class="mb-3">
+                <div class="mb-3">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="card dashboard-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-center">Total Products Sold</h4>
+                                      <p class="card-text text-center h6" id="totalSold"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card dashboard-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-center">Total Sales</h4>
+                                      <p class="card-text text-center h6">PHP <span id="salesTotal"></span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card dashboard-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-center">Average Price of Transactions</h4>
+                                      <p class="card-text text-center h6" id="productAve"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card dashboard-card">
+                                    <div class="card-body">
+                                      <h5 class="card-title text-center">Number of Transactions</h4>
+                                      <p class="card-text text-center h6" id="transNum"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                        <div class="col">
+                                <!-- Chart -->
+                                <center><h4 class="text-white">Prpducts Sold Per Category</h4></center>
+                                <canvas id="barChart" class="canvas">
+
+                                </canvas>
+                            </div>
+                            <div class="col">
+                            <center><h4 class="text-white">Monthly Sales</h4></center>
+                                <canvas id="lineChart" class="canvas">
+
+                                </canvas>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
         </div>
     </div>
     <!-- Javascript Sources -->
+    <script src="./../node_modules/chart.js/dist/chart.umd.js"></script>
+    <script src="scripts/dashboardcharts.js"></script>
     <script src="scripts/toggler.js"></script>
     <script src="system/confirmlogout.js"></script>
+    <script src="scripts/dashboardscript.js"></script>
+    <script src="./../bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 <?php
-    include('system/logoutmodal.php');
+     include('system/logoutmodal.php');
 ?>
 </html>

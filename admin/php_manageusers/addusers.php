@@ -15,7 +15,8 @@
         $fname = $_POST['fname'];
         $lname = $_POST['lname'];
 
-        $stmt->bind_param("sssss", $uname, $pword, $ulevel, $fname, $lname); 
+        $hashedpassword = password_hash($pword, PASSWORD_BCRYPT);
+        $stmt->bind_param("sssss", $uname, $hashedpassword, $ulevel, $fname, $lname); 
 
         if($stmt->execute()){
             echo "success";

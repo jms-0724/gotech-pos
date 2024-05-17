@@ -18,7 +18,7 @@ if($result->num_rows > 0){
         <tr>
         <td><?= $row['cust_fname']?> <?= $row['cust_lname']?> </td>
         <td><?= $row['cust_brgy']?> <?= $row['cust_municipality']?> <?= $row['cust_province']?></td>
-        <td><button type="button" class="btn btn-outline-primary" id="addtoTrans" onclick="placeCustomer(<?= $row['cust_id']?>)">Add Customer</button></td>
+        <td><button type="button" class="btn btn-outline-primary" id="addtoTrans" onclick="placeCustomer(<?= $row['cust_id']?>)">Place Customer</button></td>
         </tr>
     <?php
 } 

@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded',()=>{
             display();
         }
     })
+    // Add Products Click to Confirmation
     document.getElementById("add_inv").addEventListener('submit', (e)=>{
         e.preventDefault();
         const confirmModal = new bootstrap.Modal(document.getElementById('confirm_prods'));
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         $("#confirm_prods").modal("hide");
     })
     document.getElementById("addinvDB").addEventListener("click", ()=>{
-        const addprod_id = document.getElementById("addprod_id").value;
+        // const addprod_id = document.getElementById("addprod_id").value;
         const addprod_name = document.getElementById("addprod_name").value;
         const addprod_type = document.getElementById("addprod_type").value;
         const addprod_quantity = document.getElementById("addprod_quantity").value;
@@ -71,7 +72,7 @@ document.addEventListener('DOMContentLoaded',()=>{
         const addprod_photo = document.getElementById("addprod_photo").files[0];
         //Form Data 
         let formData = new FormData();
-        formData.append("addprod_id",addprod_id);
+        // formData.append("addprod_id",addprod_id);
         formData.append("addprod_name",addprod_name);
         formData.append("addprod_type",addprod_type);
         formData.append("addprod_quantity",addprod_quantity);
@@ -90,12 +91,13 @@ document.addEventListener('DOMContentLoaded',()=>{
         })
         .then(data=>{
             if(data == "success"){
-                console.log(data);
+                
                 const successModal = new bootstrap.Modal(document.getElementById("success"));
                 successModal.show();
                 document.getElementById("add_inv").reset();
                 $("#confirm_prods").modal("hide");
                 display();
+                dynamicOption();
             } else {
                 console.log(data);
                 const failedModal = new bootstrap.Modal(document.getElementById("failed"));
@@ -116,22 +118,59 @@ document.addEventListener('DOMContentLoaded',()=>{
         $("#updProducts").modal('show');
         $("#confirm_inv").modal('hide');
     })
+
+    document.getElementById('upd_items').addEventListener('submit',(e)=> {
+        e.preventDefault();
+        const confirmModal = new bootstrap.Modal(document.getElementById("confirm_item"));
+        confirmModal.show();
+        $("#addItems").modal('hide');
+    })
+    
+    document.getElementById('backtoItems').addEventListener('submit',()=> {
+        $("#addItems").modal('show');
+        $("#confirm_item").modal('hide');
+    })
+    document.getElementById('upd_price').addEventListener('submit', (e)=>{
+        e.preventDefault()
+        const confirmPrice = new bootstrap.Modal(document.getElementById('confirm_price'));
+        confirmPrice.show();
+        $("#updPrice").modal('hide');
+    })
+    document.getElementById('backtoPrice').addEventListener('click', ()=>{
+        $("#updPrice").modal('show');
+        $("#confirm_price").modal('hide');
+    })  
+
+    document.getElementById('remove_form').addEventListener('submit', (e)=> {
+        e.preventDefault();
+        $("#confirm_remove").modal("show");
+        $("#removeItems").modal("hide");
+    })
+
+    document.getElementById('backtoRemove').addEventListener('click', ()=> {
+        
+        $("#confirm_remove").modal("hide");
+        $("#removeItems").modal("show");
+    })
+
     //Update with Fetch
     document.getElementById("updDB").addEventListener('click',function(){
         
         const pid = document.getElementById('pID').textContent;
-        const updprod_quantity = document.getElementById("updprod_quantity").value;
-        const updprod_price = document.getElementById("updprod_price").value;
+        const updprod_name = document.getElementById('updprod_name').value;
+        const updprod_type = document.getElementById('updprod_type').value;
+        // const updprod_quantity = document.getElementById("updprod_quantity").value;
+        // const updprod_price = document.getElementById("updprod_price").value;
         
         let formData = new FormData();
         formData.append("pid",pid);
-        // formData.append("updprod_name",updprod_name);
-        // formData.append("updprod_type",updprod_type);
-        formData.append("updprod_quantity",updprod_quantity);
-        formData.append("updprod_price", updprod_price);
+        formData.append("updprod_name",updprod_name);
+        formData.append("updprod_type",updprod_type);
+        // formData.append("updprod_quantity",updprod_quantity);
+        // formData.append("updprod_price", updprod_price);
         // formData.append("updprod_photo",updprod_photo);
 
-        fetch('php_inventory/updateprice.php',{
+        fetch('php_inventory/updatedetails.php',{
             method: 'POST',
             body:formData
         })
@@ -157,9 +196,201 @@ document.addEventListener('DOMContentLoaded',()=>{
             }
         })
     })
+
+    document.getElementById("updItem").addEventListener('click',function(){
+        const updprod_name = document.getElementById('items').value;
+        const updprod_quantity = document.getElementById("updprod_quantity").value;
+        // const updprod_price = document.getElementById("updprod_price").value;
+        
+        let formData = new FormData();
+        //formData.append("pid",pid);
+        formData.append("updprod_name",updprod_name);
+        // formData.append("updprod_type",updprod_type);
+        formData.append("updprod_quantity",updprod_quantity);
+        //formData.append("updprod_price", updprod_price);
+        // formData.append("updprod_photo",updprod_photo);
+        console.log(formData);
+        fetch('php_inventory/updateitem.php',{
+            method: 'POST',
+            body:formData
+            
+        })
+        .then(response => {
+            if (!response.ok){
+                throw new Error("Network Repsonse not Working")
+            }
+            return response.text();
+        })
+        .then(data =>{
+            if(data == "success"){
+                console.log(data);
+                const successModal = new bootstrap.Modal(document.getElementById("success"));
+                successModal.show();
+                document.getElementById("upd_items").reset();
+                $("#confirm_item").modal("hide");
+                display();
+                dynamicOption();
+            } else {
+                console.log(data);
+                const failedModal = new bootstrap.Modal(document.getElementById("failed"));
+                failedModal.show();
+                $("#confirm_item").modal("hide");
+            }
+        })
+    })
+
+    document.getElementById("DBminus").addEventListener('click',function(){
+        const updprod_name = document.getElementById('itemstoRemove').value;
+        const updprod_quantity = document.getElementById("remove_quantity").value;
+        // const updprod_price = document.getElementById("updprod_price").value;
+        
+        let formData = new FormData();
+        //formData.append("pid",pid);
+        formData.append("updprod_name",updprod_name);
+        // formData.append("updprod_type",updprod_type);
+        formData.append("updprod_quantity",updprod_quantity);
+        //formData.append("updprod_price", updprod_price);
+        // formData.append("updprod_photo",updprod_photo);
+        console.log(formData);
+        fetch('php_inventory/removeitems.php',{
+            method: 'POST',
+            body:formData
+            
+        })
+        .then(response => {
+            if (!response.ok){
+                throw new Error("Network Repsonse not Working")
+            }
+            return response.text();
+        })
+        .then(data =>{
+            if(data == "success"){
+                console.log(data);
+                const successModal = new bootstrap.Modal(document.getElementById("success"));
+                successModal.show();
+                document.getElementById("remove_form").reset();
+                $("#confirm_remove").modal("hide");
+                display();
+                
+            } else {
+                console.log(data);
+                const failedModal = new bootstrap.Modal(document.getElementById("failed"));
+                failedModal.show();
+                $("#confirm_remove").modal("hide");
+            }
+        })
+
+    })
+    // Send data to update price
+    document.getElementById("DBPrice").addEventListener('click',function(){
+        const pid = document.getElementById('prID').textContent;
+        const updprod_name = document.getElementById('prod_name').value;
+        const updprod_price = document.getElementById("updatePrice").value;
+        
+        let formData = new FormData();
+        formData.append("pid",pid);
+        formData.append("updprod_name",updprod_name);
+        formData.append("updprod_price", updprod_price);
+        fetch('php_inventory/updateprice.php',{
+            method: 'POST',
+            body:formData
+            
+        })
+        .then(response => {
+            if (!response.ok){
+                throw new Error("Network Repsonse not Working")
+            }
+            return response.text();
+        })
+        .then(data =>{
+            if(data == "success"){
+                console.log(data);
+                const successModal = new bootstrap.Modal(document.getElementById("success"));
+                successModal.show();
+                document.getElementById("upd_items").reset();
+                $("#confirm_price").modal("hide");
+                display();
+            } else {
+                console.log(data);
+                const failedModal = new bootstrap.Modal(document.getElementById("failed"));
+                failedModal.show();
+                $("#confirm_price").modal("hide");
+            }
+        })
+    })
+    // Dynamic Option
+    function dynamicOption(){
+        fetch('php_inventory/items.php', {
+            method: 'POST',
+        })
+        //Ensure response is ok
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("items").innerHTML = data;
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+        });
+    }
+    dynamicOption();
+        function dynamicOption2(){
+        fetch('php_inventory/items.php', {
+            method: 'POST',
+        })
+        //Ensure response is ok
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.text();
+        })
+        .then(data => {
+            document.getElementById("itemstoRemove").innerHTML = data;
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+        });
+    }
+    dynamicOption2();
+
 })
    //Update
-   function editProducts(prod_id){
+   function editPrice(prod_id){
+    fetch('php_inventory/fetchedit.php',{
+        method: 'POST',
+        headers: {'Content-type':'application/x-www-form-urlencoded'},
+        body: new URLSearchParams({
+            pid: prod_id
+        })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("HTTP-Error: " + response.status);
+        } 
+        return response.text();
+    })
+    .then(data => {
+        let tbl_inventory = JSON.parse(data);
+        document.getElementById("prID").textContent = tbl_inventory.prod_id;
+        document.getElementById("prod_name").value = tbl_inventory.prod_name;
+        // document.getElementById("updprod_type").value = tbl_inventory.prod_type;
+        //document.getElementById("updprod_quantity").value = tbl_inventory.prod_quantity;
+        document.getElementById("updatePrice").value =  tbl_inventory.prod_price;
+        
+        const editModaled = new bootstrap.Modal(document.getElementById("updPrice"));
+        editModaled.show();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });  
+   
+}
+function editProducts(prod_id){
     fetch('php_inventory/fetchedit.php',{
         method: 'POST',
         headers: {'Content-type':'application/x-www-form-urlencoded'},
@@ -176,10 +407,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     .then(data => {
         let tbl_inventory = JSON.parse(data);
         document.getElementById("pID").textContent = tbl_inventory.prod_id;
-        // document.getElementById("updprod_name").value = tbl_inventory.prod_name;
-        // document.getElementById("updprod_type").value = tbl_inventory.prod_type;
-        document.getElementById("updprod_quantity").value = tbl_inventory.prod_quantity;
-        document.getElementById("updprod_price").value =  tbl_inventory.prod_price;
+        document.getElementById("updprod_name").value = tbl_inventory.prod_name;
+        document.getElementById("updprod_type").value = tbl_inventory.prod_type;
         
         const editModaled = new bootstrap.Modal(document.getElementById("updProducts"));
         editModaled.show();

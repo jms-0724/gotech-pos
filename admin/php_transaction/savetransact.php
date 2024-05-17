@@ -34,6 +34,7 @@ if(isset($jsondecoded['cust_id'])){
             $qpurchased = $item['quantity'];
             $price_item = $item['price_item'];
             $total_cost = $item['total_cost'];
+            $prod_name = $item['prod_name'];
              // Select products
             $stmt2 = $conn->prepare("SELECT * FROM tbl_inventory WHERE prod_id = ?");
             $stmt2->bind_param('s',$prod_id);
@@ -54,6 +55,9 @@ if(isset($jsondecoded['cust_id'])){
                         $update_quantity = $conn->prepare('UPDATE tbl_inventory SET prod_quantity = ? WHERE  prod_id=?');
                         $update_quantity->bind_param('is',$Nquantity,$prod_id);
                         if($trans_detail->execute() && $update_quantity->execute()){
+                            $data = array(
+                                array($qpurchased, $prod_name, $price_item, $total_cost)
+                            );
                             echo "success";
                         } else {
                             echo "failed";
@@ -71,8 +75,6 @@ if(isset($jsondecoded['cust_id'])){
         $conn->rollback();
         echo "$th";
     }
-
-  
 
 }
 
